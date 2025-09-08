@@ -1,0 +1,20 @@
+:root {
+  --font-manrope: "Manrope", sans-serif;
+
+  --main: #101828;
+  --gray: #8e929a;
+  --button: #3470ff;
+  --button-hover: #0b44cd;
+  --gray-light: #f2f4f7;
+  --gray-lighter: #f7f7f7;
+  --badges: #dadde1;
+  --input: #dadde1;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-manrope);
+  background-color: #fff;
+  color: #111;
+}

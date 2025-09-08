@@ -1,0 +1,70 @@
+.hero {
+  position: absolute;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin: -48px -50vw 48px -50vw;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    image-set(
+      url("/assets/main-page@1x.jpg") 1x,
+      url("../../assets/main-page@2x.jpg") 2x
+    ); */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    image-set(
+      url("/assets/main-page@1x.jpg") 1x,
+      url("/assets/main-page@2x.jpg") 2x
+    );
+  background-size: cover;
+  /* min-height: 700px; */
+  height: 100%;
+  min-width: 1440px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  padding-bottom: 120px;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 120%;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.mainText {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+.button {
+  border-radius: 12px;
+  padding: 12px 99px;
+  background-color: var(--button);
+
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+
+  transition: background-color 300ms ease-in;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--button-hover);
+}
