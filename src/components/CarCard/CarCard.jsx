@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import css from "./CarCard.module.css";
-import { CiHeart } from "react-icons/ci";
+import Icon from "../../../public/assets/Icon";
 
 export default function CarCard({ car }) {
   const parts = car.address.split(", ");
@@ -40,7 +40,7 @@ export default function CarCard({ car }) {
       </div>
       <Link className={css.readMore}>Read more</Link>
       <button className={css.save}>
-        <CiHeart className={css.heartIcon} />
+        <Icon name="heart" classname={css.heartIcon} />
       </button>
     </div>
   );
