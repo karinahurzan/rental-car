@@ -51,8 +51,12 @@
 }
 
 .button {
+  display: inline-block;
+  text-align: center;
+  width: 100;
+  min-width: 276px;
   border-radius: 12px;
-  padding: 12px 99px;
+  padding: 12px 0;
   background-color: var(--button);
 
   font-family: var(--font-family);

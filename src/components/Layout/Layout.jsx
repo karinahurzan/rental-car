@@ -1,3 +1,4 @@
+import Loader from "../Loader/Loader";
 import styles from "./Layout.module.css";
 import { Suspense } from "react";
 
@@ -6,7 +7,8 @@ const Layout = ({ children }) => {
     <>
       <section className={styles.section}>
         <div className={styles.container}>
-          <Suspense fallback={"Loading..."}>{children}</Suspense>
+          {/* <Loader /> */}
+          <Suspense fallback={<Loader />}>{children}</Suspense>
         </div>
       </section>
     </>

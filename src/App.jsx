@@ -3,12 +3,13 @@ import styles from "./App.module.css";
 import { lazy, Suspense } from "react";
 
 const MainPage = lazy(() => import("./pages/MainPage"));
-const Catalog = lazy(() => import("./pages/Catalog"));
+const Catalog = lazy(() => import("./pages/Catalog/Catalog"));
 const CarDetails = lazy(() => import("./pages/CarDetails"));
 const Favourites = lazy(() => import("./pages/Favourites"));
 
 import Layout from "./components/Layout/Layout";
 import Header from "./components/Header/Header";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Header />
       <main className={styles.mainContent}>
         <Layout>
-          <Suspense fallback={"Loading..."}>
+          <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/cars" element={<Catalog />} />
