@@ -20,7 +20,7 @@ export default function CarCard({ car }) {
 
       <div className={css.titleInfo}>
         <h2 className={css.title}>
-          {car.brand} <span className={css.model}>${car.model}, </span>
+          {car.brand} <span className={css.model}>{car.model}, </span>
           {car.year}
         </h2>
         <p className={css.price}>{`$${car.rentalPrice}`}</p>

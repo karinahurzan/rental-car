@@ -1,15 +1,15 @@
 :root {
   --font-manrope: "Manrope", sans-serif;
+  --second-family: "Inter", sans-serif;
 
   --main: #101828;
-  --gray: #8e929a;
+  --gray: #8d929a;
+  --gray-light: #dadde1;
+  --badges: #f2f4f7;
+  --inputs: #f7f7f7;
+  --white: #fff;
   --button: #3470ff;
   --button-hover: #0b44cd;
-  --gray-light: #f2f4f7;
-  --gray-lighter: #f7f7f7;
-  --badges: #dadde1;
-  --input: #dadde1;
-  --white: #ffffff;
 }
 
 body {
