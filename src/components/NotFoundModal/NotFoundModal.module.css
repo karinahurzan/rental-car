@@ -1,0 +1,39 @@
+.container {
+  border: 1px solid var(--gray-light);
+  border-radius: 10px;
+  max-width: 560px;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 10px 15px 2px var(--gray);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  padding: 30px;
+
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 120%;
+  text-align: center;
+  color: var(--main);
+  margin-bottom: 16px;
+}
+
+.message {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 133%;
+  text-align: center;
+  color: var(--main);
+}

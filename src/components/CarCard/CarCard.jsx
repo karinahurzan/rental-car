@@ -1,12 +1,27 @@
 import { Link } from "react-router-dom";
 import css from "./CarCard.module.css";
 import Icon from "../../../public/assets/Icon";
+import { useDispatch, useSelector } from "react-redux";
+import clsx from "clsx";
+import { addFavorite, removeFavorite } from "../../redux/favouritesSlice";
 
 export default function CarCard({ car }) {
   const parts = car.address.split(", ");
   const city = parts[parts.length - 2];
   const country = parts[parts.length - 1];
   const formattedMileage = car.mileage.toLocaleString("uk-UA");
+  const dispatch = useDispatch();
+  const isFavorite = useSelector((state) =>
+    state.favorites.items.includes(car.id)
+  );
+
+  const handleSave = (id) => {
+    if (isFavorite) {
+      dispatch(removeFavorite(id));
+    } else {
+      dispatch(addFavorite(id));
+    }
+  };
 
   return (
     <div className={css.card}>
@@ -39,8 +54,11 @@ export default function CarCard({ car }) {
         </ul>
       </div>
       <Link className={css.readMore}>Read more</Link>
-      <button className={css.save}>
-        <Icon name="heart" classname={css.heartIcon} />
+      <button onClick={() => handleSave(car.id)} className={css.save}>
+        <Icon
+          name="heart"
+          classname={clsx(isFavorite ? css.heartIconSaved : css.heartIcon)}
+        />
       </button>
     </div>
   );

@@ -26,6 +26,17 @@
   overflow: visible;
 }
 
+.heartIconSaved {
+  padding: 1px;
+  fill: var(--button);
+  stroke: transparent;
+  stroke-width: 3px;
+  transition: fill 0.3s ease-in, stroke 0.3s ease-in;
+  width: 18px;
+  height: 18px;
+  overflow: visible;
+}
+
 .heartIcon:hover,
 .heartIcon:active {
   fill: var(--button);
@@ -109,10 +120,15 @@
   text-transform: capitalize;
 }
 
-.carInfo li:not(:last-child) {
-  border-right: 1px solid var(--input);
+.infoLists ul:not(:last-child) > li {
+  border-right: 1px solid var(--gray-light);
   padding-right: 6px;
 }
+
+/* .carInfo li:not(:last-child) {
+  border-right: 1px solid var(--gray-light);
+  padding-right: 6px;
+} */
 
 .readMore {
   display: inline-block;

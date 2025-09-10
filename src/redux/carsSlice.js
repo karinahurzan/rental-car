@@ -23,6 +23,10 @@ export const loadCars = createAsyncThunk(
   }
 );
 
+const savedFilters = JSON.parse(
+  localStorage.getItem("catalog_filters") || "{}"
+);
+
 const carsSlice = createSlice({
   name: "cars",
   initialState: {
@@ -31,7 +35,7 @@ const carsSlice = createSlice({
     total: 0,
     isLoading: false,
     error: null,
-    filters: {},
+    filters: savedFilters,
     hasMore: true,
   },
   reducers: {
@@ -40,6 +44,7 @@ const carsSlice = createSlice({
       state.items = [];
       state.page = 1;
       state.total = 0;
+      localStorage.setItem("catalog_filters", JSON.stringify(state.filters));
     },
     resetVehicles(state) {
       state.items = [];

@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import css from "./Header.module.css";
 import Icon from "../../../public/assets/Icon";
+import clsx from "clsx";
 
 export default function Header() {
   return (
@@ -11,15 +12,21 @@ export default function Header() {
         </Link>
 
         <nav className={css.navList}>
-          <NavLink className={css.navLink} to={"/"}>
+          <NavLink
+            className={({ isActive }) =>
+              clsx(css.navLink, { [css.activeNavLink]: isActive })
+            }
+            to={"/"}
+          >
             Home
           </NavLink>
-          <NavLink className={css.navLink} to={"/cars"}>
+          <NavLink
+            className={({ isActive }) =>
+              clsx(css.navLink, { [css.activeNavLink]: isActive })
+            }
+            to={"/cars"}
+          >
             Catalog
-          </NavLink>
-
-          <NavLink className={css.navLink} to={"/favourites"}>
-            Saved
           </NavLink>
         </nav>
       </div>
