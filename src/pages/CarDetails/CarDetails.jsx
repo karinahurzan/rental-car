@@ -49,7 +49,7 @@ export default function CarDetails() {
 
           <Conditions conditions={car.rentalConditions} />
 
-          {/* <Specifications /> */}
+          <Specifications />
         </div>
       </div>
     </div>
