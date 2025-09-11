@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchCars } from "../api/cars";
+import { fetchCarById, fetchCars } from "./operations";
 
 export const loadCars = createAsyncThunk(
   "cars/load",
@@ -23,6 +23,18 @@ export const loadCars = createAsyncThunk(
   }
 );
 
+export const loadCarById = createAsyncThunk(
+  "cars/loadById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await fetchCarById(id);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response?.data || err.message);
+    }
+  }
+);
+
 const savedFilters = JSON.parse(
   localStorage.getItem("catalog_filters") || "{}"
 );
@@ -37,6 +49,7 @@ const carsSlice = createSlice({
     error: null,
     filters: savedFilters,
     hasMore: true,
+    car: null,
   },
   reducers: {
     setFilters(state, action) {
@@ -75,6 +88,18 @@ const carsSlice = createSlice({
         state.hasMore = state.items.length < state.total;
       })
       .addCase(loadCars.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(loadCarById.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(loadCarById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.car = action.payload;
+      })
+      .addCase(loadCarById.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

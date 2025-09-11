@@ -1,8 +1,8 @@
 // store.js
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import carsReducer from "./carsSlice";
-import brandsReducer from "./brandsSlice";
-import favoritesReducer from "./favouritesSlice";
+import carsReducer from "./cars/carsSlice";
+import brandsReducer from "./brands/brandsSlice";
+import favoritesReducer from "./favourites/favouritesSlice";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,

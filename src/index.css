@@ -30,3 +30,29 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* Chrome, Safari, Edge */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+/* Firefox (частково) */
+input[type="date"]::-moz-focus-inner {
+  border: 0;
+}
+
+:global(.react-datepicker-wrapper) {
+  width: 100%;
+}
+:global(.react-datepicker__input-container) {
+  width: 100%;
+}
+
+:global(.react-datepicker-popper) {
+  margin-top: 0 !important;
+}
+
+* {
+  border: none;
+}

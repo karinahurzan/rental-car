@@ -4,7 +4,7 @@ import { lazy, Suspense } from "react";
 
 const MainPage = lazy(() => import("./pages/MainPage"));
 const Catalog = lazy(() => import("./pages/Catalog/Catalog"));
-const CarDetails = lazy(() => import("./pages/CarDetails"));
+const CarDetails = lazy(() => import("./pages/CarDetails/CarDetails"));
 
 import Layout from "./components/Layout/Layout";
 import Header from "./components/Header/Header";

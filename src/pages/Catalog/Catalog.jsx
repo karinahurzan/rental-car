@@ -2,21 +2,33 @@ import { useDispatch, useSelector } from "react-redux";
 import CarCard from "../../components/CarCard/CarCard";
 import css from "./Catalog.module.css";
 import { useEffect, useState } from "react";
-import { loadCars, setFilters } from "../../redux/carsSlice";
 import Loader from "../../components/Loader/Loader";
-import { loadBrands } from "../../redux/brandsSlice";
 import Select from "react-select";
 import clsx from "clsx";
 import NotFoundModal from "../../components/NotFoundModal/NotFoundModal";
+import {
+  selectCars,
+  selectCarsFilters,
+  selectCarsHasMore,
+  selectCarsIsLoading,
+  selectCarsPage,
+} from "../../redux/cars/selectors";
+import { selectBrands } from "../../redux/brands/selectors";
+import { selectFavorites } from "../../redux/favourites/selectors";
+import { loadCars, setFilters } from "../../redux/cars/carsSlice";
+import { loadBrands } from "../../redux/brands/brandsSlice";
 
 export default function Catalog() {
   const dispatch = useDispatch();
-  const { items, filters, page, isLoading, hasMore } = useSelector(
-    (state) => state.cars
-  );
 
-  const { items: brands } = useSelector((state) => state.brands);
-  const { items: favorites } = useSelector((state) => state.favorites);
+  const cars = useSelector(selectCars);
+  const filters = useSelector(selectCarsFilters);
+  const page = useSelector(selectCarsPage);
+  const isLoading = useSelector(selectCarsIsLoading);
+  const hasMore = useSelector(selectCarsHasMore);
+
+  const brands = useSelector(selectBrands);
+  const favorites = useSelector(selectFavorites);
 
   const handleLoadMore = () => {
     if (!isLoading && hasMore) {
@@ -79,7 +91,7 @@ export default function Catalog() {
     dispatch(loadCars({ filters: resetFilters, page: 1 }));
   };
 
-  let sortedItems = [...items];
+  let sortedItems = [...cars];
 
   if (filters.sortByFavorites === "top") {
     sortedItems.sort((a, b) => {
@@ -362,7 +374,9 @@ export default function Catalog() {
           Reset
         </button>
       </form>
-      {items && items.length ? (
+      {isLoading ? (
+        <Loader />
+      ) : cars && cars.length ? (
         <>
           <ul className={css.catalogList}>
             {sortedItems.map((car) => (
