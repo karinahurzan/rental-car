@@ -9,6 +9,7 @@ import Form from "../../components/CarDetailsComponents/BookingForm/BookingForm"
 import GeneralInfo from "../../components/CarDetailsComponents/GeneralInfo/GeneralInfo";
 import Conditions from "../../components/CarDetailsComponents/Conditions/Conditions";
 import Specifications from "../../components/CarDetailsComponents/Specifications/Specifications";
+import Loader from "../../components/Loader/Loader";
 
 export default function CarDetails() {
   const { carsId } = useParams();
@@ -22,6 +23,10 @@ export default function CarDetails() {
   const car = useSelector(selectCar);
 
   console.log(car);
+
+  if (!car) {
+    return <Loader />;
+  }
 
   return (
     <div className={css.container}>
