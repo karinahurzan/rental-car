@@ -1,0 +1,28 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+  margin-bottom: 20px;
+}
+
+.checkIcon {
+  width: 16px;
+  height: 16px;
+  fill: var(--main);
+}

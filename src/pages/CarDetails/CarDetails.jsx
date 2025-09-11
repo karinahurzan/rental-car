@@ -6,6 +6,9 @@ import { selectCar } from "../../redux/cars/selectors";
 
 import css from "./CarDetails.module.css";
 import Form from "../../components/CarDetailsComponents/BookingForm/BookingForm";
+import GeneralInfo from "../../components/CarDetailsComponents/GeneralInfo/GeneralInfo";
+import Conditions from "../../components/CarDetailsComponents/Conditions/Conditions";
+import Specifications from "../../components/CarDetailsComponents/Specifications/Specifications";
 
 export default function CarDetails() {
   const { carsId } = useParams();
@@ -30,7 +33,25 @@ export default function CarDetails() {
         />
         <Form />
       </div>
-      <div className={css.sectionRight}></div>
+      <div className={css.sectionRight}>
+        <GeneralInfo
+          address={car.address}
+          brand={car.brand}
+          model={car.model}
+          year={car.year}
+          description={car.description}
+          price={car.rentalPrice}
+          mileage={car.mileage}
+        />
+        <div className={css.lists}>
+          <Conditions conditions={car.rentalConditions} />
+          <Conditions conditions={car.rentalConditions} />
+
+          <Conditions conditions={car.rentalConditions} />
+
+          {/* <Specifications /> */}
+        </div>
+      </div>
     </div>
   );
 }

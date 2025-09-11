@@ -1,124 +1,109 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./BookingForm.module.css";
-import "react-datepicker/dist/react-datepicker.css";
 import clsx from "clsx";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs from "dayjs";
-import { useState } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "../../../utils/theme";
 
 const initialValues = {
   name: "",
   email: "",
-  bookingDate: "",
+  bookingDate: null,
   comment: "",
 };
 
 const bookingSchema = Yup.object().shape({
   name: Yup.string()
-    .min(2, "Too short!")
-    .max(16, "Too long!")
-    .required("Required"),
+    .min(2, "Name is too short")
+    .max(16, "Name is too long")
+    .required("Name is required"),
   email: Yup.string()
-    .email("Must be a valid email!")
-    .max(128, "Too long!")
-    .required("Required"),
-  bookingDate: Yup.date(),
+    .email("Invalid email")
+    .max(128, "Email is too long")
+    .required("Email is required"),
+  bookingDate: Yup.date().nullable(),
   comment: Yup.string(),
 });
 
 export default function BookingForm() {
-  const [calendarOpen, setCalendarOpen] = useState(false);
+  const handleSubmit = (values) => {
+    console.log(values);
+  };
 
   return (
-    <div className={css.formContainer}>
-      <h3 className={css.title}>Book your car now</h3>
-      <p className={css.text}>
-        Stay connected! We are always ready to help you.
-      </p>
-      <Formik initialValues={initialValues} validationSchema={bookingSchema}>
-        {({ values, setFieldValue, errors, touched }) => (
-          <Form className={css.form}>
-            <Field
-              className={css.input}
-              type="text"
-              name="name"
-              placeholder="Name*"
-            />
-            <Field
-              className={css.input}
-              type="email"
-              name="email"
-              placeholder="Email*"
-            />
-            {/* <Field
-              className={css.input}
-              type="date"
-              name="date"
-              placeholder="Booking date"
-            />
-
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DateCalendar", "DateCalendar"]}>
-                <DemoItem label="readOnly">
-                  <DateCalendar defaultValue={dayjs("2022-04-17")} readOnly />
-                </DemoItem>
-              </DemoContainer>
-            </LocalizationProvider> */}
-
-            <Box
-              sx={{
-                position: "relative",
-                width: "100%",
-              }}
-            >
-              <TextField
+    <ThemeProvider theme={theme}>
+      <div className={css.formContainer}>
+        <h3 className={css.title}>Book your car now</h3>
+        <p className={css.text}>
+          Stay connected! We are always ready to help you.
+        </p>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={bookingSchema}
+        >
+          {({ values, setFieldValue, touched, errors }) => (
+            <Form className={css.form}>
+              <Field
                 className={css.input}
-                name="date"
-                placeholder="Booking date"
-                value={
-                  values.date ? dayjs(values.date).format("YYYY-MM-DD") : ""
-                }
-                onClick={() => setCalendarOpen(!calendarOpen)}
-                readOnly
-                error={touched.date && Boolean(errors.date)}
-                helperText={touched.date && errors.date}
-                fullWidth
+                type="text"
+                name="name"
+                placeholder="Name*"
               />
+              <div className={css.error}>
+                <ErrorMessage name="name" />
+              </div>
+              <Field
+                className={css.input}
+                type="email"
+                name="email"
+                placeholder="Email*"
+              />
+              <div className={css.error}>
+                <ErrorMessage name="email" />
+              </div>
 
-              {calendarOpen && (
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <Box sx={{ position: "absolute", zIndex: 10, mt: 1 }}>
-                    <DateCalendar
-                      value={values.date ? dayjs(values.date) : null}
-                      onChange={(newValue) => {
-                        setFieldValue(
-                          "date",
-                          newValue ? newValue.toISOString() : ""
-                        );
-                        setCalendarOpen(false);
-                      }}
-                    />
-                  </Box>
-                </LocalizationProvider>
-              )}
-            </Box>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DesktopDatePicker
+                  label="Booking date"
+                  value={values.bookingDate}
+                  onChange={(newValue) =>
+                    setFieldValue("bookingDate", newValue)
+                  }
+                  slotProps={{
+                    textField: {
+                      className: css.input,
+                      placeholder: "Booking date",
+                    },
+                  }}
+                />
+                <div className={css.error}>
+                  {touched.bookingDate && errors.bookingDate
+                    ? errors.bookingDate
+                    : ""}
+                </div>
+              </LocalizationProvider>
 
-            <Field
-              className={clsx(css.textarea, css.input)}
-              as="textarea"
-              name="comment"
-              placeholder="Comment"
-            />
-          </Form>
-        )}
-      </Formik>
-    </div>
+              <Field
+                className={clsx(css.textarea, css.input)}
+                as="textarea"
+                name="comment"
+                placeholder="Comment"
+              />
+              <div className={css.error}>
+                <ErrorMessage name="comment" />
+              </div>
+
+              <button className={css.button} type="submit">
+                Submit
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </ThemeProvider>
   );
 }

@@ -26,7 +26,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   justify-content: center;
   align-items: center;
   margin-bottom: 24px;
@@ -34,7 +33,7 @@
 
 .input {
   border-radius: 12px;
-  padding: 12px 20px;
+  padding: 16.5px 20px;
   width: 100%;
   background-color: var(--inputs);
   font-family: var(--font-family);
@@ -42,11 +41,6 @@
   font-size: 16px;
   line-height: 125%;
   color: var(--main);
-}
-
-.css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root {
-  background-color: transparent;
-  border: none;
 }
 
 .input::placeholder {
@@ -62,25 +56,21 @@
   resize: none;
 }
 
-.inputDateWrapper {
-  width: 100%;
-}
-
-.wrapper {
-  width: 100%;
-  display: block;
-}
-
-.calendarHeader {
-  font-family: var(--second-family);
+.button {
+  border-radius: 12px;
+  padding: 12px 51px;
+  background-color: var(--button);
+  font-family: var(--font-family);
   font-weight: 600;
   font-size: 16px;
-  line-height: 120%;
-  text-align: center;
-  color: var(--main);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 12px;
-  background-color: var(--white);
+  line-height: 125%;
+  color: var(--white);
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  min-height: 18px; /* резервуємо місце */
+  margin: 4px 0;
+  align-self: flex-start;
 }

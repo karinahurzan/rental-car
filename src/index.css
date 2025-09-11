@@ -1,5 +1,5 @@
 :root {
-  --font-manrope: "Manrope", sans-serif;
+  --font-family: "Manrope", sans-serif;
   --second-family: "Inter", sans-serif;
 
   --main: #101828;
@@ -53,6 +53,6 @@ input[type="date"]::-moz-focus-inner {
   margin-top: 0 !important;
 }
 
-* {
-  border: none;
+fieldset {
+  border-style: none !important;
 }
