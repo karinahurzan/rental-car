@@ -87,7 +87,7 @@ export const theme = createTheme({
     MuiPickersInputBase: {
       styleOverrides: {
         root: {
-          padding: "24px 20px",
+          padding: "0px 16px",
           fontFamily: "var(--font-family)",
           fontWeight: 500,
           fontSize: "16px",
@@ -96,10 +96,16 @@ export const theme = createTheme({
         },
       },
     },
+    // MuiPickersOutlinedInput: {
+    //   styleOverrides: {
+    //     root: {
+    //       padding: "0px 20px",
+    //     },
+    //   },
+    // },
     MuiPickersSectionList: {
       styleOverrides: {
         root: {
-          padding: "24px 20px",
           fontFamily: "var(--font-family)",
           fontWeight: 500,
           fontSize: "16px",
@@ -119,6 +125,8 @@ export const theme = createTheme({
           fontSize: "16px",
           lineHeight: "125%",
           color: "var(--gray)",
+          alignSelf: "center",
+          left: "4px",
         },
       },
     },
@@ -133,6 +141,15 @@ export const theme = createTheme({
       styleOverrides: {
         button: {
           color: "var(--button)",
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          display: "flex",
+          // alignItems: "flex-start",
+          // justifyContent: "space-between",
         },
       },
     },

@@ -1,0 +1,110 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
+}
+
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.input {
+  background-color: var(--inputs);
+  padding: 12px 24px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  max-width: 160px;
+}
+
+.input::placeholder {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  transition: color 300ms ease-in;
+}
+
+.input:focus::placeholder {
+  color: var(--gray);
+}
+
+.left {
+  border-right: 1px solid var(--gray-light);
+  border-radius: 12px 0 0 12px;
+}
+
+.right {
+  border-radius: 0 12px 12px 0;
+}
+
+.searchButton {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+  border-radius: 12px;
+  padding: 12px 40px;
+  background-color: var(--button);
+  align-self: flex-end;
+
+  transition: background-color 300ms ease-in;
+}
+
+.searchButton:hover,
+.searchButton:focus {
+  background-color: var(--button-hover);
+}
+
+.resetButton {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  border: 1px solid var(--button);
+  border-radius: 12px;
+  padding: 12px 40px;
+  transition: border 300ms ease-in;
+  align-self: flex-end;
+}
+
+.resetButton:hover,
+.resetButton :focus {
+  border: 1px solid var(--button-hover);
+}

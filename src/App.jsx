@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import { lazy, Suspense } from "react";
 
 const MainPage = lazy(() => import("./pages/MainPage"));
-const Catalog = lazy(() => import("./pages/Catalog/Catalog"));
+const Catalog = lazy(() => import("./pages/Catalog"));
 const CarDetails = lazy(() => import("./pages/CarDetails/CarDetails"));
 
 import Layout from "./components/Layout/Layout";

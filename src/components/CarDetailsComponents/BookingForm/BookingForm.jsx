@@ -75,7 +75,6 @@ export default function BookingForm() {
                   }
                   slotProps={{
                     textField: {
-                      className: css.input,
                       placeholder: "Booking date",
                     },
                   }}
