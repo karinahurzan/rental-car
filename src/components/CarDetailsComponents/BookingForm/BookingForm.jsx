@@ -70,7 +70,6 @@ export default function BookingForm() {
               </div>
               <Field name="email">
                 {({ field }) => {
-                  const [isFocused, setIsFocused] = useState(false);
                   return (
                     <input
                       {...field}
