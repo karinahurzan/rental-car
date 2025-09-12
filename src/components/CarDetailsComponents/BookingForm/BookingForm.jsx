@@ -7,6 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../../utils/theme";
+import { useState } from "react";
 
 const initialValues = {
   name: "",
@@ -33,6 +34,9 @@ export default function BookingForm() {
     console.log(values);
   };
 
+  const [isNameFocused, setIsNameFocused] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <div className={css.formContainer}>
@@ -47,21 +51,38 @@ export default function BookingForm() {
         >
           {({ values, setFieldValue, touched, errors }) => (
             <Form className={css.form}>
-              <Field
-                className={css.input}
-                type="text"
-                name="name"
-                placeholder="Name*"
-              />
+              <Field name="name">
+                {({ field }) => {
+                  return (
+                    <input
+                      {...field}
+                      type="text"
+                      placeholder={isNameFocused ? "Name" : "Name*"}
+                      className={css.input}
+                      onFocus={() => setIsNameFocused(true)}
+                      onBlur={() => setIsNameFocused(false)}
+                    />
+                  );
+                }}
+              </Field>
               <div className={css.error}>
                 <ErrorMessage name="name" />
               </div>
-              <Field
-                className={css.input}
-                type="email"
-                name="email"
-                placeholder="Email*"
-              />
+              <Field name="email">
+                {({ field }) => {
+                  const [isFocused, setIsFocused] = useState(false);
+                  return (
+                    <input
+                      {...field}
+                      type="email"
+                      placeholder={isEmailFocused ? "Email" : "Email*"}
+                      className={css.input}
+                      onFocus={() => setIsEmailFocused(true)}
+                      onBlur={() => setIsEmailFocused(false)}
+                    />
+                  );
+                }}
+              </Field>
               <div className={css.error}>
                 <ErrorMessage name="email" />
               </div>
