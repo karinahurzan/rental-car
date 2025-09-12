@@ -10,6 +10,7 @@ import GeneralInfo from "../../components/CarDetailsComponents/GeneralInfo/Gener
 import Conditions from "../../components/CarDetailsComponents/Conditions/Conditions";
 import Specifications from "../../components/CarDetailsComponents/Specifications/Specifications";
 import Loader from "../../components/Loader/Loader";
+import AccesAndFunc from "../../components/CarDetailsComponents/AccesAndFunc/AccesAndFunc";
 
 export default function CarDetails() {
   const { carsId } = useParams();
@@ -21,8 +22,6 @@ export default function CarDetails() {
   }, [dispatch, carsId]);
 
   const car = useSelector(selectCar);
-
-  console.log(car);
 
   if (!car) {
     return <Loader />;
@@ -48,13 +47,21 @@ export default function CarDetails() {
           price={car.rentalPrice}
           mileage={car.mileage}
         />
+
         <div className={css.lists}>
           <Conditions conditions={car.rentalConditions} />
-          <Conditions conditions={car.rentalConditions} />
 
-          <Conditions conditions={car.rentalConditions} />
+          <Specifications
+            engineSize={car.engineSize}
+            consumption={car.fuelConsumption}
+            year={car.year}
+            type={car.type}
+          />
 
-          <Specifications />
+          <AccesAndFunc
+            accessories={car.accessories}
+            functionalities={car.functionalities}
+          />
         </div>
       </div>
     </div>

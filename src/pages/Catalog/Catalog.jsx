@@ -18,6 +18,24 @@ import { selectFavorites } from "../../redux/favourites/selectors";
 import { loadCars, setFilters } from "../../redux/cars/carsSlice";
 import { loadBrands } from "../../redux/brands/brandsSlice";
 
+function MileageInput({ value, onChange, placeholder, prefix, side }) {
+  const formatNumber = (num) =>
+    num ? num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : "";
+
+  return (
+    <input
+      className={clsx(css.input, css[side])}
+      type="text"
+      placeholder={placeholder}
+      value={value ? `${prefix} ${formatNumber(value)}` : ""}
+      onChange={(e) => {
+        const raw = e.target.value.replace(/\D/g, "");
+        onChange(raw);
+      }}
+    />
+  );
+}
+
 export default function Catalog() {
   const dispatch = useDispatch();
 
@@ -50,7 +68,7 @@ export default function Catalog() {
     { value: "", label: "Choose a price" },
     ...[30, 40, 50, 60, 70, 80].map((num) => ({
       value: num,
-      label: `To $${num}`,
+      label: num,
     })),
   ];
 
@@ -194,6 +212,11 @@ export default function Catalog() {
             }
             options={priceOptions}
             placeholder="Choose a price"
+            formatOptionLabel={(option, { context }) =>
+              context === "value" && option.value !== ""
+                ? `To $${option.value}`
+                : option.label
+            }
             styles={{
               control: (base) => ({
                 ...base,
@@ -331,37 +354,25 @@ export default function Catalog() {
         </div>
 
         <div className={css.inputsWrapper}>
-          <label className={css.label} htmlFor="mileage">
-            Car mileage / km
-          </label>
-
+          <label className={css.label}>Car mileage / km</label>
           <div className={css.inputs}>
-            <input
-              className={clsx(css.input, css.left)}
+            <MileageInput
+              side="left"
               placeholder="From"
-              type="number"
-              name="minMileage"
-              id="mileage"
-              onChange={(e) =>
-                setLocalFilters({
-                  ...localFilters,
-                  minMileage: e.target.value,
-                })
+              prefix="From"
+              value={localFilters.minMileage}
+              onChange={(val) =>
+                setLocalFilters({ ...localFilters, minMileage: val })
               }
-              value={localFilters.minMileage || ""}
             />
-            <input
-              className={clsx(css.input, css.right)}
+            <MileageInput
+              side="right"
               placeholder="To"
-              type="number"
-              name="maxMileage"
-              onChange={(e) =>
-                setLocalFilters({
-                  ...localFilters,
-                  maxMileage: e.target.value,
-                })
+              prefix="To"
+              value={localFilters.maxMileage}
+              onChange={(val) =>
+                setLocalFilters({ ...localFilters, maxMileage: val })
               }
-              value={localFilters.maxMileage || ""}
             />
           </div>
         </div>

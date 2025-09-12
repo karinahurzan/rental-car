@@ -1,9 +1,7 @@
 .container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 640px 1fr;
+
   gap: 72px;
 }
 
@@ -16,14 +14,10 @@
 
 .sectionRight {
   flex: 1;
-  padding-top: 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: baseline;
-  height: 100px;
+  display: grid;
+  grid-template-rows: minmax(180px, auto) 1fr;
   gap: 68px;
+  height: auto; /* або взагалі прибрати height */
 }
 
 .lists {
@@ -32,7 +26,6 @@
   justify-content: space-between;
   align-items: stretch;
   width: 100%;
-  gap: 110px;
 }
 
 .img {
