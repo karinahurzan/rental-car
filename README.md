@@ -28,6 +28,7 @@ Car Rental App is a web application for renting cars. Users can browse the car c
 
 ## Project Structure
 
+```text
 public/
 └─ assets/
 src/
@@ -56,6 +57,7 @@ src/
 │ ├─ NotFound/
 │ └─ CarDetails/
 └─ utils/
+```
 
 ## Usage
 
@@ -106,6 +108,7 @@ LinkedIn: [https://www.linkedin.com/in/karina-hurzan/]
 
 ## Структура проекту
 
+```text
 public/
 └─ assets/
 src/
@@ -134,6 +137,7 @@ src/
 │ ├─ NotFound/
 │ └─ CarDetails/
 └─ utils/
+```
 
 ## Використання
 
