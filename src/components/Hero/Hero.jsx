@@ -8,7 +8,7 @@ export default function Hero() {
       <p className={css.mainText}>
         Reliable and budget-friendly rentals for any journey
       </p>
-      <Link to={"/cars"} className={css.button}>
+      <Link to={"/catalog"} className={css.button}>
         View Catalog
       </Link>
     </div>
