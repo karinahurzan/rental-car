@@ -20,8 +20,8 @@ function App() {
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<MainPage />} />
-              <Route path="/cars" element={<Catalog />} />
-              <Route path="/cars/:carsId" element={<CarDetails />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/catalog/:id" element={<CarDetails />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

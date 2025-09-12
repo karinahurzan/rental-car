@@ -11,29 +11,15 @@
 }
 
 .headerContent {
-  max-width: 393px;
+  max-width: 1440px;
+
+  padding: 26px 108px;
   margin: 0 auto;
-  padding: 26px 16px;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-@media screen and (min-width: 768px) {
-  .headerContent {
-    max-width: 768px;
-    padding: 26px 32px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .headerContent {
-    max-width: 1440px;
-
-    padding: 26px 108px;
-  }
 }
 
 .navLink {

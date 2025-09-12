@@ -13,13 +13,13 @@ import Loader from "../../components/Loader/Loader";
 import AccesAndFunc from "../../components/CarDetailsComponents/AccesAndFunc/AccesAndFunc";
 
 export default function CarDetails() {
-  const { carsId } = useParams();
+  const { id } = useParams();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadCarById(carsId));
-  }, [dispatch, carsId]);
+    dispatch(loadCarById(id));
+  }, [dispatch, id]);
 
   const car = useSelector(selectCar);
 

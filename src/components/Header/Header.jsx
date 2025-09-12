@@ -24,7 +24,7 @@ export default function Header() {
             className={({ isActive }) =>
               clsx(css.navLink, { [css.activeNavLink]: isActive })
             }
-            to={"/cars"}
+            to={"/catalog"}
           >
             Catalog
           </NavLink>

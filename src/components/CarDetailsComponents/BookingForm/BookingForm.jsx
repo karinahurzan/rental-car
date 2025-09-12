@@ -1,13 +1,14 @@
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import css from "./BookingForm.module.css";
-import clsx from "clsx";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../../utils/theme";
-import { useState } from "react";
+import css from "./BookingForm.module.css";
+import clsx from "clsx";
+import toast, { Toaster } from "react-hot-toast"; // <- імпорт
 
 const initialValues = {
   name: "",
@@ -30,16 +31,19 @@ const bookingSchema = Yup.object().shape({
 });
 
 export default function BookingForm() {
-  const handleSubmit = (values) => {
-    console.log(values);
-  };
-
   const [isNameFocused, setIsNameFocused] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
+
+  const handleSubmit = (values, { resetForm }) => {
+    console.log(values);
+    toast.success("Your car has been successfully booked!");
+    resetForm();
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <div className={css.formContainer}>
+        <Toaster position="top-right" />
         <h3 className={css.title}>Book your car now</h3>
         <p className={css.text}>
           Stay connected! We are always ready to help you.
@@ -52,35 +56,32 @@ export default function BookingForm() {
           {({ values, setFieldValue, touched, errors }) => (
             <Form className={css.form}>
               <Field name="name">
-                {({ field }) => {
-                  return (
-                    <input
-                      {...field}
-                      type="text"
-                      placeholder={isNameFocused ? "Name" : "Name*"}
-                      className={css.input}
-                      onFocus={() => setIsNameFocused(true)}
-                      onBlur={() => setIsNameFocused(false)}
-                    />
-                  );
-                }}
+                {({ field }) => (
+                  <input
+                    {...field}
+                    type="text"
+                    placeholder={isNameFocused ? "Name" : "Name*"}
+                    className={css.input}
+                    onFocus={() => setIsNameFocused(true)}
+                    onBlur={() => setIsNameFocused(false)}
+                  />
+                )}
               </Field>
               <div className={css.error}>
                 <ErrorMessage name="name" />
               </div>
+
               <Field name="email">
-                {({ field }) => {
-                  return (
-                    <input
-                      {...field}
-                      type="email"
-                      placeholder={isEmailFocused ? "Email" : "Email*"}
-                      className={css.input}
-                      onFocus={() => setIsEmailFocused(true)}
-                      onBlur={() => setIsEmailFocused(false)}
-                    />
-                  );
-                }}
+                {({ field }) => (
+                  <input
+                    {...field}
+                    type="email"
+                    placeholder={isEmailFocused ? "Email" : "Email*"}
+                    className={css.input}
+                    onFocus={() => setIsEmailFocused(true)}
+                    onBlur={() => setIsEmailFocused(false)}
+                  />
+                )}
               </Field>
               <div className={css.error}>
                 <ErrorMessage name="email" />
@@ -94,9 +95,7 @@ export default function BookingForm() {
                     setFieldValue("bookingDate", newValue)
                   }
                   slotProps={{
-                    textField: {
-                      placeholder: "Booking date",
-                    },
+                    textField: { placeholder: "Booking date" },
                   }}
                 />
                 <div className={css.error}>

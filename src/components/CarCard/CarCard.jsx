@@ -55,7 +55,7 @@ export default function CarCard({ car }) {
           <li>{`${formattedMileage} km`}</li>
         </ul>
       </div>
-      <Link to={`/cars/${car.id}`} className={css.readMore}>
+      <Link to={`/catalog/${car.id}`} className={css.readMore}>
         Read more
       </Link>
       <button onClick={() => handleSave(car.id)} className={css.save}>
