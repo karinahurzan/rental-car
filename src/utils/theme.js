@@ -133,7 +133,8 @@ export const theme = createTheme({
     MuiInputAdornment: {
       styleOverrides: {
         root: {
-          color: "var(--gray)",
+          width: "100%",
+          height: "100%",
         },
       },
     },
@@ -150,6 +151,30 @@ export const theme = createTheme({
           display: "flex",
           // alignItems: "flex-start",
           // justifyContent: "space-between",
+        },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          display: "none",
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          padding: "16px 0",
+          width: "100%",
+          height: "100%",
+          borderRadius: "0",
+          opacity: 0,
+          ":hover": {
+            backgroundColor: "transparent",
+          },
+          ":active": {
+            backgroundColor: "transparent",
+          },
         },
       },
     },
