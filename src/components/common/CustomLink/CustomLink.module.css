@@ -1,0 +1,20 @@
+.link {
+  display: inline-block;
+  text-align: center;
+  border-radius: 12px;
+  padding: 12px 0;
+  background-color: var(--button);
+
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+
+  transition: background-color 300ms ease-in;
+}
+
+.link:hover,
+.link:focus {
+  background-color: var(--button-hover);
+}

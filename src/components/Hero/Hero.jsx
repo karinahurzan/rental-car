@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import css from "./Hero.module.css";
+import CustomLink from "../common/CustomLink/CustomLink";
 
 export default function Hero() {
   return (
@@ -8,9 +9,8 @@ export default function Hero() {
       <p className={css.mainText}>
         Reliable and budget-friendly rentals for any journey
       </p>
-      <Link to={"/catalog"} className={css.button}>
-        View Catalog
-      </Link>
+
+      <CustomLink name="View Catalog" minWidth="276px" href="catalog" />
     </div>
   );
 }

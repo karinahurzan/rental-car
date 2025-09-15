@@ -9,6 +9,7 @@ import { theme } from "../../../utils/theme";
 import css from "./BookingForm.module.css";
 import clsx from "clsx";
 import toast, { Toaster } from "react-hot-toast"; // <- імпорт
+import Button from "../../common/Button/Button";
 
 const initialValues = {
   name: "",
@@ -115,9 +116,11 @@ export default function BookingForm() {
                 <ErrorMessage name="comment" />
               </div>
 
-              <button className={css.button} type="submit">
-                Submit
-              </button>
+              <Button
+                styleType="buttonBackground"
+                name="Submit"
+                type="submit"
+              />
             </Form>
           )}
         </Formik>

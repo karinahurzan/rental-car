@@ -8,6 +8,7 @@ import {
   addFavorite,
   removeFavorite,
 } from "../../redux/favourites/favouritesSlice";
+import CustomLink from "../common/CustomLink/CustomLink";
 
 export default function CarCard({ car }) {
   const parts = car.address.split(", ");
@@ -55,9 +56,8 @@ export default function CarCard({ car }) {
           <li>{`${formattedMileage} km`}</li>
         </ul>
       </div>
-      <Link to={`/catalog/${car.id}`} className={css.readMore}>
-        Read more
-      </Link>
+
+      <CustomLink name="Read more" minWidth="100%" href={`catalog/${car.id}`} />
       <button onClick={() => handleSave(car.id)} className={css.save}>
         <Icon
           name="heart"
