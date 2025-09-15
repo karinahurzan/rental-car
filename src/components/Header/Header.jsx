@@ -21,6 +21,7 @@ export default function Header() {
             Home
           </NavLink>
           <NavLink
+            end
             className={({ isActive }) =>
               clsx(css.navLink, { [css.activeNavLink]: isActive })
             }
