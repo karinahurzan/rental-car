@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import clsx from "clsx";
 import css from "./CatalogFilters.module.css";
+import Button from "../common/Button/Button";
 
 function MileageInput({ value, onChange, placeholder, prefix, side }) {
   const formatNumber = (num) =>
@@ -302,12 +303,19 @@ export default function CatalogFilters({ filters, brands, onChangeFilters }) {
         </div>
       </div>
 
-      <button className={css.searchButton} type="submit">
-        Search
-      </button>
-      <button onClick={handleReset} className={css.resetButton} type="reset">
-        Reset
-      </button>
+      <Button
+        type="submit"
+        styleType="buttonBackground"
+        name="Search"
+        alignSelf="flex-end"
+      />
+      <Button
+        type="reset"
+        name="Reset"
+        onClick={handleReset}
+        styleType="buttonBorder"
+        alignSelf="flex-end"
+      />
     </form>
   );
 }

@@ -1,4 +1,5 @@
 import CarCard from "../CarCard/CarCard";
+import Button from "../common/Button/Button";
 import Loader from "../Loader/Loader";
 import NotFoundModal from "../NotFoundModal/NotFoundModal";
 import css from "./CatalogList.module.css";
@@ -47,14 +48,13 @@ export default function CatalogList({
               {isLoading ? (
                 <Loader />
               ) : (
-                <button
+                //
+                <Button
                   type="button"
-                  className={css.loadMoreButton}
+                  styleType="buttonBorder"
+                  name="Load more"
                   onClick={onLoadMore}
-                >
-                  {" "}
-                  Load more{" "}
-                </button>
+                />
               )}{" "}
             </>
           )}{" "}

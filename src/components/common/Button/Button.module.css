@@ -1,0 +1,34 @@
+.button {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  border-radius: 12px;
+  padding: 12px 51px;
+  transition: border 300ms ease-in, background-color 300ms ease-in;
+
+  display: block;
+  margin: 0 auto;
+}
+
+.buttonBorder {
+  border: 1px solid var(--button);
+}
+
+.buttonBorder:hover,
+.buttonBorder:focus {
+  border: 1px solid var(--button-hover);
+}
+
+.buttonBackground {
+  color: var(--white);
+
+  padding: 12px 40px;
+  background-color: var(--button);
+}
+
+.buttonBackground:hover,
+.buttonBackground:focus {
+  background-color: var(--button-hover);
+}
