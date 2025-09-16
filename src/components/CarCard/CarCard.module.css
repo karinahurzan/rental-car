@@ -125,6 +125,11 @@
   padding-right: 6px;
 }
 
+.lastList > li:not(:last-child) {
+  border-right: 1px solid var(--gray-light);
+  padding-right: 6px;
+}
+
 /* .carInfo li:not(:last-child) {
   border-right: 1px solid var(--gray-light);
   padding-right: 6px;

@@ -49,7 +49,7 @@ export default function CarCard({ car }) {
           <li>{country}</li>
           <li>{car.rentalCompany}</li>
         </ul>
-        <ul className={css.carInfo}>
+        <ul className={clsx(css.carInfo, css.lastList)}>
           <li>
             {car.type.charAt(0).toUpperCase() + car.type.slice(1).toLowerCase()}
           </li>
