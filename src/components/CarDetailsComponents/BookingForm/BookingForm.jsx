@@ -10,6 +10,7 @@ import css from "./BookingForm.module.css";
 import clsx from "clsx";
 import toast, { Toaster } from "react-hot-toast"; // <- імпорт
 import Button from "../../common/Button/Button";
+import dayjs from "dayjs";
 
 const initialValues = {
   name: "",
@@ -98,6 +99,7 @@ export default function BookingForm() {
                   slotProps={{
                     textField: { placeholder: "Booking date" },
                   }}
+                  minDate={dayjs()}
                 />
                 <div className={css.error}>
                   {touched.bookingDate && errors.bookingDate
