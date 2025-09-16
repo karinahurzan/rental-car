@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { loadCarById } from "../../redux/cars/carsSlice";
 import { selectCar } from "../../redux/cars/selectors";
 
 import css from "./CarDetails.module.css";
@@ -11,6 +10,7 @@ import Conditions from "../../components/CarDetailsComponents/Conditions/Conditi
 import Specifications from "../../components/CarDetailsComponents/Specifications/Specifications";
 import Loader from "../../components/Loader/Loader";
 import AccesAndFunc from "../../components/CarDetailsComponents/AccesAndFunc/AccesAndFunc";
+import { loadCarById } from "../../redux/cars/operations";
 
 export default function CarDetails() {
   const { id } = useParams();

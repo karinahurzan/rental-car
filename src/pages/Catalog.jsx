@@ -3,16 +3,18 @@ import {
   selectCars,
   selectCarsFilters,
   selectCarsHasMore,
-  selectCarsIsLoading,
+  selectCarsIsLoadingMoreCars,
   selectCarsPage,
 } from "../redux/cars/selectors";
 import { selectBrands } from "../redux/brands/selectors";
 import { selectFavorites } from "../redux/favourites/selectors";
-import { loadCars, setFilters } from "../redux/cars/carsSlice";
+import { setFilters } from "../redux/cars/carsSlice";
 import { loadBrands } from "../redux/brands/brandsSlice";
 import { useEffect } from "react";
 import CatalogFilters from "../components/CatalogFilters/CatalogFilters";
 import CatalogList from "../components/CatalogList/CatalogList";
+import Loader from "../components/Loader/Loader";
+import { loadCars, loadMoreCars } from "../redux/cars/operations";
 
 export default function Catalog() {
   const dispatch = useDispatch();
@@ -20,7 +22,7 @@ export default function Catalog() {
   const cars = useSelector(selectCars);
   const filters = useSelector(selectCarsFilters);
   const page = useSelector(selectCarsPage);
-  const isLoading = useSelector(selectCarsIsLoading);
+  const isLoadingMoreCars = useSelector(selectCarsIsLoadingMoreCars);
   const hasMore = useSelector(selectCarsHasMore);
 
   const brands = useSelector(selectBrands);
@@ -37,8 +39,8 @@ export default function Catalog() {
   };
 
   const handleLoadMore = () => {
-    if (!isLoading && hasMore) {
-      dispatch(loadCars({ filters, page: page + 1 }));
+    if (!isLoadingMoreCars && hasMore) {
+      dispatch(loadMoreCars({ filters, page: page + 1 }));
     }
   };
 
@@ -53,7 +55,7 @@ export default function Catalog() {
         cars={cars}
         favorites={favorites}
         filters={filters}
-        isLoading={isLoading}
+        isLoadingMore={isLoadingMoreCars}
         hasMore={hasMore}
         onLoadMore={handleLoadMore}
       />

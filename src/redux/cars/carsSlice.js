@@ -1,39 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchCarById, fetchCars } from "./operations";
-
-export const loadCars = createAsyncThunk(
-  "cars/load",
-  async ({ filters = {}, page = 1, perPage = 12 }, { rejectWithValue }) => {
-    try {
-      const params = {
-        page,
-        limit: perPage,
-        brand: filters.brand || undefined,
-        rentalPrice: filters.price || undefined,
-        minMileage: filters.minMileage || undefined,
-        maxMileage: filters.maxMileage || undefined,
-      };
-
-      const { data } = await fetchCars(params);
-
-      return data;
-    } catch (err) {
-      return rejectWithValue(err.response?.data || err.message);
-    }
-  }
-);
-
-export const loadCarById = createAsyncThunk(
-  "cars/loadById",
-  async (id, { rejectWithValue }) => {
-    try {
-      const { data } = await fetchCarById(id);
-      return data;
-    } catch (err) {
-      return rejectWithValue(err.response?.data || err.message);
-    }
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
+import { loadCarById, loadCars, loadMoreCars } from "./operations";
 
 const savedFilters = JSON.parse(
   localStorage.getItem("catalog_filters") || "{}"
@@ -46,6 +12,7 @@ const carsSlice = createSlice({
     page: 1,
     total: 0,
     isLoading: false,
+    isLoadingMoreCars: false,
     error: null,
     filters: savedFilters,
     hasMore: true,
@@ -89,6 +56,25 @@ const carsSlice = createSlice({
       })
       .addCase(loadCars.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(loadMoreCars.pending, (state) => {
+        state.isLoadingMoreCars = true;
+        state.error = null;
+      })
+      .addCase(loadMoreCars.fulfilled, (state, action) => {
+        state.isLoadingMoreCars = false;
+        if (Number(action.payload.page) === 1) {
+          state.items = action.payload.cars;
+        } else {
+          state.items = [...state.items, ...action.payload.cars];
+        }
+        state.page = Number(action.payload.page);
+        state.total = action.payload.totalCars;
+        state.hasMore = state.items.length < state.total;
+      })
+      .addCase(loadMoreCars.rejected, (state, action) => {
+        state.isLoadingMoreCars = false;
         state.error = action.payload;
       })
       .addCase(loadCarById.pending, (state) => {

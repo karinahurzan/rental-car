@@ -1,14 +1,16 @@
+import { useSelector } from "react-redux";
 import CarCard from "../CarCard/CarCard";
 import Button from "../common/Button/Button";
 import Loader from "../Loader/Loader";
 import NotFoundModal from "../NotFoundModal/NotFoundModal";
 import css from "./CatalogList.module.css";
+import { selectCarsIsLoading } from "../../redux/cars/selectors";
 
 export default function CatalogList({
   cars,
   favorites,
   filters,
-  isLoading,
+  isLoadingMore,
   hasMore,
   onLoadMore,
 }) {
@@ -28,6 +30,12 @@ export default function CatalogList({
     });
   }
 
+  const isLoading = useSelector(selectCarsIsLoading);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
       {sortedItems && sortedItems.length ? (
@@ -45,7 +53,7 @@ export default function CatalogList({
           {hasMore && (
             <>
               {" "}
-              {isLoading ? (
+              {isLoadingMore ? (
                 <Loader />
               ) : (
                 //
