@@ -6,14 +6,11 @@ import {
   selectCarsIsLoadingMoreCars,
   selectCarsPage,
 } from "../redux/cars/selectors";
-import { selectBrands } from "../redux/brands/selectors";
 import { selectFavorites } from "../redux/favourites/selectors";
 import { setFilters } from "../redux/cars/carsSlice";
-import { loadBrands } from "../redux/brands/brandsSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CatalogFilters from "../components/CatalogFilters/CatalogFilters";
 import CatalogList from "../components/CatalogList/CatalogList";
-import Loader from "../components/Loader/Loader";
 import { loadCars, loadMoreCars } from "../redux/cars/operations";
 
 export default function Catalog() {
@@ -25,12 +22,17 @@ export default function Catalog() {
   const isLoadingMoreCars = useSelector(selectCarsIsLoadingMoreCars);
   const hasMore = useSelector(selectCarsHasMore);
 
-  const brands = useSelector(selectBrands);
   const favorites = useSelector(selectFavorites);
+
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     dispatch(loadCars({ filters, page: 1 }));
-    dispatch(loadBrands());
+
+    fetch("/brands.json")
+      .then((res) => res.json())
+      .then((data) => setBrands(data.brands))
+      .catch((err) => console.error("Error loading brands:", err));
   }, [dispatch, filters]);
 
   const handleSetFilters = (newFilters) => {

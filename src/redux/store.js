@@ -1,7 +1,6 @@
 // store.js
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import carsReducer from "./cars/carsSlice";
-import brandsReducer from "./brands/brandsSlice";
 import favoritesReducer from "./favourites/favouritesSlice";
 import storage from "redux-persist/lib/storage";
 import {
@@ -23,7 +22,6 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   cars: carsReducer,
-  brands: brandsReducer,
   favorites: favoritesReducer,
 });
 
