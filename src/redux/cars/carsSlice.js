@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loadCarById, loadCars, loadMoreCars } from "./operations";
 
+const savedFilters = JSON.parse(
+  localStorage.getItem("catalog_filters") || "{}"
+);
+
 const carsSlice = createSlice({
   name: "cars",
   initialState: {
@@ -10,7 +14,7 @@ const carsSlice = createSlice({
     isLoading: false,
     isLoadingMoreCars: false,
     error: null,
-    filters: {},
+    filters: savedFilters,
     hasMore: true,
     car: null,
   },
@@ -20,6 +24,7 @@ const carsSlice = createSlice({
       state.items = [];
       state.page = 1;
       state.total = 0;
+      localStorage.setItem("catalog_filters", JSON.stringify(action.payload));
     },
     resetVehicles(state) {
       state.items = [];

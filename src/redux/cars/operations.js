@@ -39,6 +39,7 @@ export const loadMoreCars = createAsyncThunk(
         minMileage: filters.minMileage || undefined,
         maxMileage: filters.maxMileage || undefined,
       };
+      localStorage.setItem("catalog_filters", filters);
 
       const { data } = await fetchCars(params);
 
