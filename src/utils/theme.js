@@ -157,23 +157,27 @@ export const theme = createTheme({
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          display: "none",
+          '&[data-testid="CalendarIcon"]': {
+            display: "none",
+          },
         },
       },
     },
     MuiIconButton: {
       styleOverrides: {
         root: {
-          padding: "16px 0",
-          width: "100%",
-          height: "100%",
-          borderRadius: "0",
-          opacity: 0,
-          ":hover": {
-            backgroundColor: "transparent",
-          },
-          ":active": {
-            backgroundColor: "transparent",
+          '&[aria-label="Choose date"]': {
+            padding: "16px 0",
+            width: "100%",
+            height: "100%",
+            borderRadius: "0",
+            opacity: 0,
+            ":hover": {
+              backgroundColor: "transparent",
+            },
+            ":active": {
+              backgroundColor: "transparent",
+            },
           },
         },
       },
