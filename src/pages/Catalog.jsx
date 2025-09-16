@@ -35,7 +35,6 @@ export default function Catalog() {
 
   const handleSetFilters = (newFilters) => {
     dispatch(setFilters(newFilters));
-    dispatch(loadCars({ filters: newFilters, page: 1 }));
   };
 
   const handleLoadMore = () => {
