@@ -9,12 +9,10 @@ const favoritesSlice = createSlice({
     addFavorite(state, action) {
       if (!state.items.includes(action.payload)) {
         state.items.push(action.payload);
-        localStorage.setItem("rental_favorites", JSON.stringify(state.items));
       }
     },
     removeFavorite(state, action) {
       state.items = state.items.filter((id) => id !== action.payload);
-      localStorage.setItem("rental_favorites", JSON.stringify(state.items));
     },
   },
 });
