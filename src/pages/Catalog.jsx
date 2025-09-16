@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import CatalogFilters from "../components/CatalogFilters/CatalogFilters";
 import CatalogList from "../components/CatalogList/CatalogList";
 import { loadCars, loadMoreCars } from "../redux/cars/operations";
+import { fetchBrands } from "../utils/getBrands";
 
 export default function Catalog() {
   const dispatch = useDispatch();
@@ -28,12 +29,15 @@ export default function Catalog() {
 
   useEffect(() => {
     dispatch(loadCars({ filters, page: 1 }));
-
-    fetch("/brands.json")
-      .then((res) => res.json())
-      .then((data) => setBrands(data.brands))
-      .catch((err) => console.error("Error loading brands:", err));
   }, [dispatch, filters]);
+
+  useEffect(() => {
+    fetchBrands()
+      .then((data) => setBrands(data))
+      .catch((err) => console.error("Error loading brands:", err));
+  }, []);
+
+  console.log(brands);
 
   const handleSetFilters = (newFilters) => {
     dispatch(setFilters(newFilters));
